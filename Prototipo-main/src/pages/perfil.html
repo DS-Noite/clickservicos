@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil — ClickServiços</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/perfil.css">
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══ -->
+  <nav class="navbar">
+    <a href="home.html" class="navbar-brand">Click<em>Serviços</em></a>
+    <div class="navbar-actions">
+      <a href="home.html" class="btn-ghost">← Voltar</a>
+      <a href="../../index.html" class="btn-secondary" onclick="clearSession(); return true;">Sair</a>
+      <img class="avatar" src="https://i.pravatar.cc/40" data-user-foto alt="avatar">
+    </div>
+  </nav>
+
+  <!-- ══ CONTEÚDO ══ -->
+  <div class="perfil-layout" id="perfilContent">
+
+    <!-- ── SIDEBAR ── -->
+    <div class="perfil-sidebar">
+
+      <!-- Card de identidade -->
+      <div class="identity-card">
+        <div class="identity-banner"></div>
+        <div class="identity-avatar-wrap">
+          <img class="identity-avatar" id="idAvatar" src="https://i.pravatar.cc/88" alt="Foto">
+          <div class="identity-dot" id="idDot"></div>
+        </div>
+        <div class="identity-body">
+          <div class="identity-name" id="idName">Carregando...</div>
+          <div class="identity-role" id="idRole"></div>
+          <div class="identity-location" id="idLocation"></div>
+          <p class="identity-desc" id="idDesc"></p>
+        </div>
+        <div class="quick-stats">
+          <div class="qstat">
+            <span class="qstat-num" id="statEstrelas">–</span>
+            <span class="qstat-label">Nota</span>
+          </div>
+          <div class="qstat">
+            <span class="qstat-num" id="statAvaliacoes">–</span>
+            <span class="qstat-label">Reviews</span>
+          </div>
+          <div class="qstat">
+            <span class="qstat-num" id="statTempo">–</span>
+            <span class="qstat-label">Na plataforma</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Informações -->
+      <div class="info-card">
+        <h3>Informações</h3>
+        <div class="info-row">
+          <span class="label">Horário</span>
+          <span class="value" id="infoHorario">–</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Valor</span>
+          <span class="value accent" id="infoPreco">–</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Status</span>
+          <span class="value" id="infoStatus">–</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Gênero</span>
+          <span class="value" id="infoGenero">–</span>
+        </div>
+      </div>
+
+      <!-- Ações de contato -->
+      <div class="contact-card">
+        <button class="btn-primary" onclick="abrirChat(document.getElementById('idName').textContent)">
+          💬 Enviar Mensagem
+        </button>
+        <button class="btn-secondary">
+          📞 Solicitar Orçamento
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ── CONTEÚDO PRINCIPAL ── -->
+    <div class="perfil-main">
+
+      <!-- Serviços -->
+      <div class="perfil-section">
+        <h2>Serviços oferecidos</h2>
+        <div class="services-grid" id="servicosGrid">
+          <!-- JS -->
+        </div>
+      </div>
+
+      <!-- Trabalhos anteriores -->
+      <div class="perfil-section">
+        <h2>Trabalhos anteriores</h2>
+        <div class="cardlinks-grid" id="cardlinksGrid">
+          <!-- JS -->
+        </div>
+      </div>
+
+      <!-- Avaliações -->
+      <div class="perfil-section">
+        <h2>Avaliações</h2>
+        <div class="review-summary">
+          <div>
+            <div class="review-big-num" id="reviewScore">–</div>
+          </div>
+          <div>
+            <span class="review-big-stars" id="reviewStars">–</span>
+            <span class="review-total" id="reviewTotal">– avaliações</span>
+          </div>
+        </div>
+        <div class="review-list" id="reviewList">
+          <!-- JS -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../scripts/db.js"></script>
+  <script src="../scripts/auth.js"></script>
+  <script src="../scripts/perfil.js"></script>
+  <script>
+    requireAuth('../../index.html');
+  </script>
+
+</body>
+</html>

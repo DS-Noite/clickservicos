@@ -1,0 +1,269 @@
+{
+  "usuarios": [
+    {
+      "id": "u001",
+      "nome": "Carlos Mendes",
+      "email": "carlos@email.com",
+      "senha": "123456",
+      "role": "profissional",
+      "foto": "https://i.pravatar.cc/150?img=12",
+      "cidade": "Recife",
+      "estado": "PE",
+      "cadastradoEm": "2024-01-15"
+    },
+    {
+      "id": "u002",
+      "nome": "Fátima Oliveira",
+      "email": "fatima@email.com",
+      "senha": "123456",
+      "role": "profissional",
+      "foto": "https://i.pravatar.cc/150?img=47",
+      "cidade": "Olinda",
+      "estado": "PE",
+      "cadastradoEm": "2024-02-20"
+    },
+    {
+      "id": "u003",
+      "nome": "João Ricardo",
+      "email": "joao@email.com",
+      "senha": "123456",
+      "role": "cliente",
+      "foto": "https://i.pravatar.cc/150?img=33",
+      "cidade": "Recife",
+      "estado": "PE",
+      "cadastradoEm": "2024-03-10"
+    },
+    {
+      "id": "u004",
+      "nome": "Ana Lima",
+      "email": "ana@email.com",
+      "senha": "123456",
+      "role": "cliente",
+      "foto": "https://i.pravatar.cc/150?img=56",
+      "cidade": "Caruaru",
+      "estado": "PE",
+      "cadastradoEm": "2024-03-22"
+    }
+  ],
+  "profissionais": [
+    {
+      "id": "p001",
+      "usuarioId": "u001",
+      "nome": "Carlos Mendes",
+      "foto": "https://i.pravatar.cc/150?img=12",
+      "titulo": "Eletricista Residencial",
+      "descricao": "Mais de 10 anos de experiência em instalações elétricas residenciais e comerciais. Trabalho com segurança, agilidade e garantia no serviço.",
+      "servicos": ["Instalação Elétrica", "Troca de Disjuntores", "Tomadas e Interruptores", "Iluminação"],
+      "cidade": "Recife",
+      "estado": "PE",
+      "genero": "masculino",
+      "estrelas": 4.8,
+      "totalAvaliacoes": 47,
+      "tempoPlatforma": 14,
+      "horario": "Seg–Sex, 08h–18h",
+      "precificacao": {
+        "tipo": "hora",
+        "valor": 80
+      },
+      "status": "disponivel",
+      "cardLinks": [
+        {
+          "id": "cl001",
+          "descricao": "Instalação de quadro elétrico completo em apartamento 3 quartos",
+          "fotoAntes": "https://picsum.photos/seed/elet1a/400/300",
+          "fotoDepois": "https://picsum.photos/seed/elet1b/400/300",
+          "tempo": "6 horas",
+          "materiais": ["Disjuntores", "Fios 2.5mm", "Quadro de distribuição"]
+        },
+        {
+          "id": "cl002",
+          "descricao": "Troca de toda fiação antiga em casa térrea",
+          "fotoAntes": "https://picsum.photos/seed/elet2a/400/300",
+          "fotoDepois": "https://picsum.photos/seed/elet2b/400/300",
+          "tempo": "2 dias",
+          "materiais": ["Fios 4mm", "Conduítes", "Caixas de passagem"]
+        }
+      ],
+      "avaliacoes": [
+        {
+          "id": "av001",
+          "clienteId": "u003",
+          "clienteNome": "João Ricardo",
+          "clienteFoto": "https://i.pravatar.cc/150?img=33",
+          "estrelas": 5,
+          "comentario": "Serviço impecável, pontual e deixou tudo limpo. Recomendo muito!",
+          "data": "2024-03-15"
+        },
+        {
+          "id": "av002",
+          "clienteId": "u004",
+          "clienteNome": "Ana Lima",
+          "clienteFoto": "https://i.pravatar.cc/150?img=56",
+          "estrelas": 5,
+          "comentario": "Carlos resolveu um problema que outro eletricista não conseguiu. Excelente profissional.",
+          "data": "2024-02-28"
+        }
+      ]
+    },
+    {
+      "id": "p002",
+      "usuarioId": "u002",
+      "nome": "Fátima Oliveira",
+      "foto": "https://i.pravatar.cc/150?img=47",
+      "titulo": "Encanadora e Hidráulica Geral",
+      "descricao": "Especialista em instalações hidráulicas, reparos de vazamentos e montagem de banheiros. Atendo mulheres que preferem ser atendidas por profissional feminina.",
+      "servicos": ["Conserto de Vazamentos", "Instalação de Torneiras", "Desentupimento", "Caixa d'água"],
+      "cidade": "Olinda",
+      "estado": "PE",
+      "genero": "feminino",
+      "estrelas": 4.9,
+      "totalAvaliacoes": 63,
+      "tempoPlatforma": 18,
+      "horario": "Seg–Sáb, 07h–17h",
+      "precificacao": {
+        "tipo": "fechado",
+        "valor": 150
+      },
+      "status": "disponivel",
+      "cardLinks": [
+        {
+          "id": "cl003",
+          "descricao": "Reforma completa do banheiro social — troca de toda tubulação",
+          "fotoAntes": "https://picsum.photos/seed/enc1a/400/300",
+          "fotoDepois": "https://picsum.photos/seed/enc1b/400/300",
+          "tempo": "1 dia",
+          "materiais": ["Tubos PVC", "Conexões", "Veda rosca"]
+        }
+      ],
+      "avaliacoes": [
+        {
+          "id": "av003",
+          "clienteId": "u004",
+          "clienteNome": "Ana Lima",
+          "clienteFoto": "https://i.pravatar.cc/150?img=56",
+          "estrelas": 5,
+          "comentario": "Fátima é incrível! Super profissional e deixou o banheiro novo.",
+          "data": "2024-03-20"
+        }
+      ]
+    },
+    {
+      "id": "p003",
+      "usuarioId": null,
+      "nome": "Roberto Santos",
+      "foto": "https://i.pravatar.cc/150?img=68",
+      "titulo": "Pintor Residencial e Comercial",
+      "descricao": "Pintura interna e externa, grafiato, textura e pintura epóxi para garagens. Orçamento sem compromisso.",
+      "servicos": ["Pintura Interna", "Pintura Externa", "Textura", "Grafiato"],
+      "cidade": "Recife",
+      "estado": "PE",
+      "genero": "masculino",
+      "estrelas": 4.6,
+      "totalAvaliacoes": 29,
+      "tempoPlatforma": 8,
+      "horario": "Seg–Sex, 07h–17h",
+      "precificacao": {
+        "tipo": "negociar",
+        "valor": null
+      },
+      "status": "ocupado",
+      "cardLinks": [],
+      "avaliacoes": []
+    },
+    {
+      "id": "p004",
+      "usuarioId": null,
+      "nome": "Luciana Ferreira",
+      "foto": "https://i.pravatar.cc/150?img=44",
+      "titulo": "Montadora de Móveis",
+      "descricao": "Montagem de móveis de todos os fabricantes: IKEA, Tok&Stok, Leroy Merlin e outros. Rápida, cuidadosa e eficiente.",
+      "servicos": ["Montagem de Móveis", "Desmontagem", "Reorganização de Ambiente", "Fixação de Prateleiras"],
+      "cidade": "Recife",
+      "estado": "PE",
+      "genero": "feminino",
+      "estrelas": 4.7,
+      "totalAvaliacoes": 41,
+      "tempoPlatforma": 11,
+      "horario": "Seg–Sáb, 08h–18h",
+      "precificacao": {
+        "tipo": "hora",
+        "valor": 60
+      },
+      "status": "disponivel",
+      "cardLinks": [],
+      "avaliacoes": []
+    },
+    {
+      "id": "p005",
+      "usuarioId": null,
+      "nome": "Marcos Vinicius",
+      "foto": "https://i.pravatar.cc/150?img=25",
+      "titulo": "Técnico em Informática",
+      "descricao": "Formatação, manutenção de computadores, instalação de redes Wi-Fi e cabeadas. Atendimento domiciliar em Recife e região.",
+      "servicos": ["Formatação de PC", "Manutenção de Notebook", "Instalação de Rede", "Remoção de Vírus"],
+      "cidade": "Recife",
+      "estado": "PE",
+      "genero": "masculino",
+      "estrelas": 4.5,
+      "totalAvaliacoes": 18,
+      "tempoPlatforma": 5,
+      "horario": "Ter–Dom, 09h–20h",
+      "precificacao": {
+        "tipo": "hora",
+        "valor": 70
+      },
+      "status": "disponivel",
+      "cardLinks": [],
+      "avaliacoes": []
+    },
+    {
+      "id": "p006",
+      "usuarioId": null,
+      "nome": "Silvia Nascimento",
+      "foto": "https://i.pravatar.cc/150?img=39",
+      "titulo": "Diarista e Limpeza Especializada",
+      "descricao": "Limpeza residencial completa, pós-obra e organização. Produtos próprios incluídos no serviço.",
+      "servicos": ["Limpeza Residencial", "Limpeza Pós-obra", "Organização", "Limpeza de Estofados"],
+      "cidade": "Caruaru",
+      "estado": "PE",
+      "genero": "feminino",
+      "estrelas": 4.9,
+      "totalAvaliacoes": 88,
+      "tempoPlatforma": 24,
+      "horario": "Seg–Sáb, 07h–16h",
+      "precificacao": {
+        "tipo": "fechado",
+        "valor": 200
+      },
+      "status": "disponivel",
+      "cardLinks": [],
+      "avaliacoes": []
+    }
+  ],
+  "categorias": [
+    { "id": "cat01", "nome": "Elétrica", "icone": "⚡" },
+    { "id": "cat02", "nome": "Hidráulica", "icone": "💧" },
+    { "id": "cat03", "nome": "Pintura", "icone": "🎨" },
+    { "id": "cat04", "nome": "Marcenaria", "icone": "🪵" },
+    { "id": "cat05", "nome": "Informática", "icone": "💻" },
+    { "id": "cat06", "nome": "Limpeza", "icone": "🧹" },
+    { "id": "cat07", "nome": "Montagem", "icone": "🔧" },
+    { "id": "cat08", "nome": "Jardinagem", "icone": "🌿" }
+  ],
+  "mensagens": [
+    {
+      "id": "msg001",
+      "de": "u003",
+      "para": "u001",
+      "texto": "Olá Carlos! Vi seu perfil e gostaria de um orçamento para instalação elétrica.",
+      "data": "2024-04-10T14:30:00"
+    },
+    {
+      "id": "msg002",
+      "de": "u001",
+      "para": "u003",
+      "texto": "Oi João! Claro, me conta mais sobre o serviço — quantos cômodos?",
+      "data": "2024-04-10T15:00:00"
+    }
+  ]
+}

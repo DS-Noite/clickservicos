@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClickServiços — Profissionais</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/home.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="../pages/home.html" class="navbar-brand">Click<em>Serviços</em></a>
+    <div class="navbar-actions">
+      <span class="hide-mobile" style="font-size:.84rem;color:var(--sand-light)">
+        Olá, <strong data-user-name>Visitante</strong>
+      </span>
+      <a href="painel.html" class="btn-ghost hide-mobile" data-auth="logado">Meu Painel</a>
+      <button class="btn-secondary" onclick="sair()">Sair</button>
+      <img class="avatar" src="https://i.pravatar.cc/34" data-user-foto alt="avatar">
+    </div>
+  </nav>
+
+  <div class="home-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <h3>Categoria</h3>
+        <div class="filter-chips" id="catChips"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Cidade</h3>
+        <select class="sidebar-select" id="filtroCidade">
+          <option value="">Todas</option>
+          <option value="Recife">Recife</option>
+          <option value="Olinda">Olinda</option>
+          <option value="Caruaru">Caruaru</option>
+        </select>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Gênero</h3>
+        <select class="sidebar-select" id="filtroGenero">
+          <option value="todos">Todos</option>
+          <option value="feminino">Feminino</option>
+          <option value="masculino">Masculino</option>
+        </select>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Disponibilidade</h3>
+        <select class="sidebar-select" id="filtroStatus">
+          <option value="todos">Todos</option>
+          <option value="disponivel">Disponível agora</option>
+          <option value="ocupado">Ocupado</option>
+        </select>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Avaliação mínima</h3>
+        <div class="stars-filter">
+          <label class="star-opt"><input type="radio" name="minEstrelas" value="4.5"><span>★★★★½  4.5+</span></label>
+          <label class="star-opt"><input type="radio" name="minEstrelas" value="4"><span>★★★★  4.0+</span></label>
+          <label class="star-opt"><input type="radio" name="minEstrelas" value="3"><span>★★★  3.0+</span></label>
+        </div>
+      </div>
+
+      <button class="btn-clear-filters" onclick="limparFiltros()">✕ Limpar filtros</button>
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <main class="main-content">
+      <div class="results-header">
+        <div>
+          <h1 class="results-title">Profissionais <strong>disponíveis</strong></h1>
+          <p class="results-count" id="resultCount">6 profissionais</p>
+        </div>
+        <select class="sort-select" id="filtroOrdenar">
+          <option value="">Ordenar por</option>
+          <option value="estrelas">Melhor avaliação</option>
+          <option value="avaliacoes">Mais avaliações</option>
+          <option value="tempo">Mais experiente</option>
+        </select>
+      </div>
+
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="buscaInput" placeholder="Buscar por serviço, nome ou especialidade...">
+      </div>
+
+      <div class="prof-grid" id="profGrid">
+        <div class="empty-state"><p>Carregando...</p></div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="../scripts/db.js"></script>
+  <script src="../scripts/auth.js"></script>
+  <script src="../scripts/home.js"></script>
+  <script>requireAuth('../../index.html');</script>
+
+</body>
+</html>

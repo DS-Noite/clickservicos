@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar — ClickServiços</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/login.css">
+</head>
+<body>
+<div class="login-page">
+  <div class="login-hero">
+    <div class="hero-logo">Click<em>Serviços</em></div>
+    <div class="hero-main">
+      <h1 class="hero-tagline">Quem faz,<br><strong>tá aqui.</strong></h1>
+      <p class="hero-desc">Encontre profissionais de confiança para reparos, manutenção e pequenos serviços — perto de você, com avaliações reais.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">6+</span><span class="stat-label">Profissionais</span></div>
+      <div class="stat-item"><span class="stat-num">4.8</span><span class="stat-label">Nota Média</span></div>
+      <div class="stat-item"><span class="stat-num">PE</span><span class="stat-label">Região</span></div>
+    </div>
+    <div class="hero-line"></div>
+  </div>
+  <div class="login-panel">
+    <div class="login-box">
+      <div class="login-header">
+        <span class="login-pre">Acesso à plataforma</span>
+        <h2 class="login-title">Entrar na conta</h2>
+        <p class="login-sub">Novo por aqui? <a href="cadastro.html">Crie sua conta.</a></p>
+      </div>
+      <div class="role-toggle">
+        <button class="role-btn active" onclick="setRole('cliente',this)">Sou Cliente</button>
+        <button class="role-btn" onclick="setRole('profissional',this)">Sou Profissional</button>
+      </div>
+      <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="seu@email.com" required>
+        </div>
+        <div class="field">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" placeholder="••••••••" required>
+        </div>
+        <p class="form-error" id="loginErro"></p>
+        <button type="submit" class="btn-primary" id="btnEntrar"><span id="btnTexto">Entrar</span></button>
+      </form>
+      <div class="demo-hints">
+        <p>Contas de demonstração</p>
+        <code>carlos@email.com / 123456 (profissional)</code>
+        <code>joao@email.com / 123456 (cliente)</code>
+      </div>
+      <div style="margin-top:1.5rem;text-align:center">
+        <a href="../../index.html" style="font-size:.8rem;color:var(--text-3)">← Voltar ao início</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<script src="../scripts/db.js"></script>
+<script src="../scripts/auth.js"></script>
+<script>
+  redirectIfLoggedIn('home.html');
+  let roleAtual = 'cliente';
+  function setRole(r,btn){ roleAtual=r; document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }
+  async function handleLogin(e){
+    e.preventDefault();
+    const email=document.getElementById('email').value;
+    const senha=document.getElementById('senha').value;
+    const erroEl=document.getElementById('loginErro');
+    const btn=document.getElementById('btnEntrar');
+    const txt=document.getElementById('btnTexto');
+    btn.disabled=true; txt.textContent='Verificando...'; erroEl.classList.remove('visible');
+    const r=await fazerLogin(email,senha);
+    if(r.ok){
+      txt.textContent='Redirecionando ✓';
+      setTimeout(()=>{ window.location.href=r.usuario.role==='profissional'?'painel.html':'home.html'; },700);
+    } else {
+      erroEl.textContent=r.erro; erroEl.classList.add('visible');
+      btn.disabled=false; txt.textContent='Entrar';
+    }
+  }
+</script>
+</body>
+</html>

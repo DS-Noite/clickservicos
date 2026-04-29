@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Painel — ClickServiços</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/painel.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="../../index.html" class="navbar-brand">Click<em>Serviços</em></a>
+  <div class="navbar-actions">
+    <a href="home.html" class="btn-ghost hide-mobile">Ver profissionais</a>
+    <button id="btnStatus" class="status-toggle" onclick="toggleStatus()">
+      <span class="status-dot"></span>
+      <span id="statusLabel">Disponível</span>
+    </button>
+    <button class="btn-ghost" onclick="sair()">Sair</button>
+    <img class="avatar" src="https://i.pravatar.cc/40" data-user-foto alt="">
+  </div>
+</nav>
+
+<!-- LAYOUT -->
+<div class="painel-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="painel-sidebar">
+    <nav class="painel-nav">
+      <button class="pnav-item active" data-tab="overview" onclick="abrirTab('overview')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Visão Geral
+      </button>
+      <button class="pnav-item" data-tab="perfil" onclick="abrirTab('perfil')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Meu Perfil
+      </button>
+      <button class="pnav-item" data-tab="servicos" onclick="abrirTab('servicos')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Meus Serviços
+      </button>
+      <button class="pnav-item" data-tab="avaliacoes" onclick="abrirTab('avaliacoes')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Avaliações
+      </button>
+      <div class="pnav-sep"></div>
+      <a class="pnav-item" href="home.html">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        Explorar
+      </a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="painel-main">
+
+    <!-- ══ ABA OVERVIEW ══ -->
+    <div class="painel-tab active" id="tab-overview">
+
+      <!-- Profile hero -->
+      <div class="profile-hero">
+        <div class="ph-cover"></div>
+        <div class="ph-body">
+          <div class="ph-avatar-wrap">
+            <img id="phAvatar" src="https://i.pravatar.cc/96?img=12" class="ph-avatar" alt="">
+            <span class="ph-dot" id="phDot"></span>
+          </div>
+          <div class="ph-info">
+            <h1 class="ph-name" id="phName">Carregando...</h1>
+            <p class="ph-role" id="phRole"></p>
+            <p class="ph-loc" id="phLoc"></p>
+          </div>
+          <div class="ph-actions">
+            <a id="phPerfilLink" href="#" class="btn-secondary btn-sm">Ver perfil público</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpi-row">
+        <div class="kpi">
+          <span class="kpi-v" id="kpiNota">–</span>
+          <span class="kpi-l">Nota média</span>
+          <div class="kpi-bar"><div class="kpi-fill" id="kpiFill"></div></div>
+        </div>
+        <div class="kpi">
+          <span class="kpi-v" id="kpiAv">–</span>
+          <span class="kpi-l">Avaliações</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-v" id="kpiSv">–</span>
+          <span class="kpi-l">Serviços</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-v" id="kpiTp">–</span>
+          <span class="kpi-l">Meses na plataforma</span>
+        </div>
+      </div>
+
+      <!-- Descrição rápida -->
+      <div class="overview-grid">
+        <div class="ov-card">
+          <div class="ov-card-header">
+            <span class="ov-label">Sobre mim</span>
+            <button class="btn-ghost btn-xs" onclick="abrirTab('perfil')">Editar →</button>
+          </div>
+          <p class="ov-desc" id="ovDesc">–</p>
+        </div>
+        <div class="ov-card">
+          <div class="ov-card-header">
+            <span class="ov-label">Meus serviços</span>
+            <button class="btn-ghost btn-xs" onclick="abrirTab('servicos')">Gerenciar →</button>
+          </div>
+          <div class="ov-tags" id="ovTags"></div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-card-header">
+            <span class="ov-label">Informações</span>
+          </div>
+          <div class="ov-info-list" id="ovInfo"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ ABA PERFIL ══ -->
+    <div class="painel-tab" id="tab-perfil">
+      <div class="tab-header">
+        <h2 class="tab-title">Editar <strong>perfil</strong></h2>
+      </div>
+      <div class="edit-grid">
+        <div class="edit-card">
+          <div class="edit-card-title">Identidade</div>
+          <div class="avatar-edit-row">
+            <img id="editAvatar" src="https://i.pravatar.cc/72?img=12" alt="">
+            <div>
+              <button class="btn-secondary btn-sm" onclick="showToastPainel('Upload de foto em breve!')">Trocar foto</button>
+              <p style="font-size:.72rem;color:var(--text-3);margin-top:.3rem">JPG ou PNG, máx 2MB</p>
+            </div>
+          </div>
+          <div class="field"><label>Nome completo</label><input type="text" id="editNome"></div>
+          <div class="field"><label>Título profissional</label><input type="text" id="editTitulo"></div>
+          <div class="field"><label>Cidade</label><input type="text" id="editCidade"></div>
+          <button class="btn-step-sm" onclick="salvarPerfil()">Salvar</button>
+        </div>
+        <div class="edit-card">
+          <div class="edit-card-title">Sobre você</div>
+          <div class="field"><label>Descrição</label><textarea id="editDesc" rows="5"></textarea></div>
+          <div class="field"><label>Horário de atendimento</label><input type="text" id="editHorario"></div>
+          <div class="field"><label>Valor (R$/hora)</label><input type="number" id="editPreco"></div>
+          <button class="btn-step-sm" onclick="salvarPerfil()">Salvar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ABA SERVIÇOS ══ -->
+    <div class="painel-tab" id="tab-servicos">
+      <div class="tab-header">
+        <h2 class="tab-title">Meus <strong>serviços</strong></h2>
+      </div>
+      <div class="edit-card" style="max-width:560px">
+        <div class="edit-card-title">Serviços cadastrados</div>
+        <div class="services-editor" id="servicosEditor"></div>
+        <div class="add-svc-row">
+          <input type="text" id="novoServico" placeholder="Adicionar serviço..." onkeydown="if(event.key==='Enter'){event.preventDefault();adicionarServico()}">
+          <button onclick="adicionarServico()">+</button>
+        </div>
+        <button class="btn-step-sm" onclick="salvarPerfil()">Salvar serviços</button>
+      </div>
+    </div>
+
+    <!-- ══ ABA AVALIAÇÕES ══ -->
+    <div class="painel-tab" id="tab-avaliacoes">
+      <div class="tab-header">
+        <h2 class="tab-title">Minhas <strong>avaliações</strong></h2>
+      </div>
+      <div class="av-summary" id="avSummary"></div>
+      <div class="av-list" id="avList"></div>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="../scripts/db.js"></script>
+<script src="../scripts/auth.js"></script>
+<script src="../scripts/painel.js"></script>
+</body>
+</html>
