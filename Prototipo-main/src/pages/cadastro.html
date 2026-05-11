@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Conta — ClickServiços</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/cadastro.css">
+</head>
+<body>
+<div class="cadastro-wrapper">
+
+  <!-- Aside -->
+  <aside class="cadastro-aside">
+    <a href="../../index.html" class="aside-logo">Click<em>Serviços</em></a>
+    <div class="aside-headline">
+      <h2>Faça parte<br><strong>da rede.</strong></h2>
+      <p>Conecte-se a profissionais de confiança ou ofereça seus serviços para quem mais precisa em Pernambuco.</p>
+    </div>
+    <div class="aside-steps-visual">
+      <div class="asv-item"><span>01</span><p>Escolha seu perfil</p></div>
+      <div class="asv-line"></div>
+      <div class="asv-item"><span>02</span><p>Preencha seus dados</p></div>
+      <div class="asv-line"></div>
+      <div class="asv-item"><span>03</span><p>Comece a usar</p></div>
+    </div>
+    <div class="aside-line"></div>
+  </aside>
+
+  <!-- Painel -->
+  <div class="cadastro-panel">
+    <div class="cadastro-box">
+
+      <a class="back-link" href="login.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Voltar ao login
+      </a>
+
+      <!-- Steps -->
+      <div class="steps" id="stepsBar">
+        <div class="step active" id="s1"><div class="step-num">1</div><span class="step-label">Tipo de conta</span></div>
+        <div class="step-line" id="line1"></div>
+        <div class="step" id="s2"><div class="step-num">2</div><span class="step-label">Seus dados</span></div>
+        <div class="step-line" id="line2"></div>
+        <div class="step" id="s3"><div class="step-num">3</div><span class="step-label">Pronto!</span></div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="step-panel visible" id="panel1">
+        <div class="s1-title">
+          <span class="cadastro-pre">Novo por aqui?</span>
+          <h1 class="cadastro-title">Criar conta</h1>
+          <p class="cadastro-desc">Como você quer usar a plataforma?</p>
+        </div>
+
+        <div class="type-options">
+          <div class="type-option selected" id="tipo-cliente" onclick="selecionarTipo('cliente')">
+            <div class="type-option-inner">
+              <div class="type-check" id="check-cliente">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="type-icon-svg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+                </svg>
+              </div>
+              <div class="type-text">
+                <div class="type-label">Cliente</div>
+                <p class="type-desc-text">Preciso de um profissional para resolver algo em casa ou no trabalho.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="type-option" id="tipo-profissional" onclick="selecionarTipo('profissional')">
+            <div class="type-option-inner">
+              <div class="type-check" id="check-profissional">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="type-icon-svg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+              </div>
+              <div class="type-text">
+                <div class="type-label">Profissional</div>
+                <p class="type-desc-text">Quero cadastrar meus serviços e ser encontrado por novos clientes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-step" onclick="irStep(2)">Continuar →</button>
+        <p class="login-hint">Já tem conta? <a href="login.html">Entrar</a></p>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step-panel" id="panel2">
+        <div class="s1-title">
+          <span class="cadastro-pre" id="preStep2">Dados pessoais</span>
+          <h1 class="cadastro-title" style="font-size:2.2rem">Suas informações</h1>
+        </div>
+        <form class="form-fields" id="formCadastro" onsubmit="handleCadastro(event)">
+          <div class="form-row-2">
+            <div class="field"><label>Nome completo *</label><input type="text" id="nome" placeholder="Seu nome" required></div>
+            <div class="field"><label>Cidade</label><input type="text" id="cidadeCad" placeholder="Recife"></div>
+          </div>
+          <div class="field"><label>E-mail *</label><input type="email" id="emailCad" placeholder="seu@email.com" required></div>
+          <div class="form-row-2">
+            <div class="field"><label>Senha *</label><input type="password" id="senhaCad" placeholder="Mínimo 6 caracteres" required></div>
+            <div class="field"><label>Confirmar *</label><input type="password" id="senhaConf" placeholder="Repita a senha" required></div>
+          </div>
+
+          <div id="extrasProfissional" style="display:none;flex-direction:column;gap:1.1rem">
+            <div class="form-sep">Perfil profissional</div>
+            <div class="field"><label>Título profissional</label><input type="text" id="titulo" placeholder="Ex: Eletricista Residencial"></div>
+            <div class="field"><label>Sobre você</label><textarea id="descricaoCad" rows="3" placeholder="Serviços, experiência, diferenciais..."></textarea></div>
+            <div class="form-row-2">
+              <div class="field"><label>Horário</label><input type="text" id="horarioCad" placeholder="Seg–Sex, 08h–18h"></div>
+              <div class="field"><label>R$/hora</label><input type="number" id="precoCad" placeholder="0"></div>
+            </div>
+          </div>
+
+          <p id="cadErro" style="color:#dc2626;font-size:.82rem;display:none"></p>
+
+          <div class="form-actions">
+            <button type="button" class="btn-back" onclick="irStep(1)">← Voltar</button>
+            <button type="submit" class="btn-step" style="flex:1">Criar conta →</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step-panel" id="panel3">
+        <div class="success-panel">
+          <div class="success-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h2 class="success-title">Conta<br><strong>criada!</strong></h2>
+          <p class="success-desc">Bem-vindo(a) ao ClickServiços. Você já pode explorar os profissionais disponíveis na sua região.</p>
+          <a href="home.html" class="btn-step">Explorar profissionais →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="../scripts/db.js"></script>
+<script src="../scripts/auth.js"></script>
+<script src="../scripts/cadastro.js"></script>
+<script>
+  // Pre-seleciona tipo se vier por query param
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('role') === 'profissional') {
+    setTimeout(() => selecionarTipo('profissional'), 100);
+  }
+</script>
+</body>
+</html>
