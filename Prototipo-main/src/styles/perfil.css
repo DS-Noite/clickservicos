@@ -107,7 +107,7 @@
   font-family: var(--font-display); font-size: 1.45rem;
   font-weight: 400; letter-spacing: -.02em;
   margin-bottom: 1rem; padding-bottom: .6rem;
-  border-bottom: 1px solid var(--border); color: var(--text-1);
+  border-bottom: 1px solid var(--border); color: var(--sand);
 }
 
 .services-grid { display: flex; flex-wrap: wrap; gap: .5rem; }
@@ -135,7 +135,7 @@
 .cardlink-chip {
   padding: 2px 8px; background: var(--off-white);
   border: 1px solid var(--border); border-radius: 99px;
-  font-size: .68rem; color: var(--text-3);
+  font-size: .68rem; color: var(--sand);
 }
 .cardlinks-empty {
   padding: 1.5rem; text-align: center; color: var(--text-3);

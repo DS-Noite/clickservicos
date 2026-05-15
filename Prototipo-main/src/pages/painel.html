@@ -45,6 +45,15 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         Avaliações
       </button>
+      <a class="pnav-item perfil-publico" href="#" id="phPerfilLink">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="1.8"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 21h8"/>
+    <path d="M12 17v4"/>
+    <rect x="3" y="3" width="18" height="14" rx="2"/>
+    <path d="M8 10h8"/>
+  </svg> Ver perfil público</a>
       <div class="pnav-sep"></div>
       <a class="pnav-item" href="home.html">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
@@ -72,8 +81,12 @@
             <p class="ph-role" id="phRole"></p>
             <p class="ph-loc" id="phLoc"></p>
           </div>
-          <div class="ph-actions">
-            <a id="phPerfilLink" href="#" class="btn-secondary btn-sm">Ver perfil público</a>
+          <div class="ava-nota">
+          <span class="kpi-v" id="kpiAv">–</span>
+          <span class="kpi-l">Avaliações</span>
+          <span class="kpi-v" id="kpiNota">–</span>
+          <span class="kpi-l">Nota média</span>
+          <div class="kpi-stars" id="kpiStars"></div>
           </div>
         </div>
       </div>
@@ -106,14 +119,13 @@
       <!-- KPIs -->
       <div class="kpi-row">
         <div class="kpi">
+          <span class="kpi-v" id="kpiAv">–</span>
           <span class="kpi-v" id="kpiNota">–</span>
           <span class="kpi-l">Nota média</span>
-          <div class="kpi-bar"><div class="kpi-fill" id="kpiFill"></div></div>
+          <div class="kpi-bar"><div class="kpi-fill" id="kpiFill"></div>
         </div>
-        <div class="kpi">
-          <span class="kpi-v" id="kpiAv">–</span>
-          <span class="kpi-l">Avaliações</span>
         </div>
+        
         <div class="kpi">
           <span class="kpi-v" id="kpiSv">–</span>
           <span class="kpi-l">Serviços</span>

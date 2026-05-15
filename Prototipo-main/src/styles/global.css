@@ -98,6 +98,21 @@ input, select, textarea { font-family: var(--font-body); font-size: 1rem; color:
 }
 .btn-secondary:hover {color: white; background: var(--sand-light); }
 
+.btn-solicitar {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  background: var(--border-soft); color: white;
+  font-size: .9rem; font-weight: 500;
+  padding: .75rem 1.5rem; border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--t);
+}
+
+.btn-solicitar:hover {color: white; transform: translateY(-2px); background: var(--sand-light); }
+.btn-solicitar:active { transform: translateY(0); }
+
+
+.btn-secondary:hover {color: white; background: var(--sand-light); }
+
 .btn-ghost {
   display: inline-flex; align-items: center; gap: .4rem;
   background: transparent; color: white;

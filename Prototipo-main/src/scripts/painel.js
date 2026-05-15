@@ -41,7 +41,8 @@ function renderOverview(p) {
   const ka = document.getElementById('kpiAv'); if(ka) ka.textContent = p.totalAvaliacoes;
   const ks = document.getElementById('kpiSv'); if(ks) ks.textContent = p.servicos.length;
   const kt = document.getElementById('kpiTp'); if(kt) kt.textContent = p.tempoPlatforma;
-  const kf = document.getElementById('kpiFill'); if(kf) setTimeout(() => kf.style.width = ((p.estrelas/5)*100) + '%', 300);
+  const estrelas = p.estrelas;
+  const container = document.getElementById('kpiStars');if (container) {let html = '';for (let i = 1; i <= 5; i++) {html += i <= estrelas? '⭐': '☆';}container.innerHTML = html;}
 
   // Cards
   const desc = document.getElementById('ovDesc'); if(desc) desc.textContent = p.descricao;

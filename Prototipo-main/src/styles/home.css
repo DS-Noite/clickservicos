@@ -23,8 +23,9 @@
 }
 
 .icon{
-  height: 50px;
-  width: 100px;
+  height: 40px;
+  width: 80px;
+  transform: translateY(-5px);
 }
 
 .hide-mobile{
@@ -133,7 +134,7 @@
   border-radius: 999px;
   background: rgba(255,255,255,.08);
   border: 1px solid rgba(255,255,255,.08);
-  color: var(--sand);
+  color: white;
   font-size: 12px;
   letter-spacing: .08em;
   text-transform: uppercase;
