@@ -1,0 +1,145 @@
+<!-- Declaração padrão que avisa ao navegador que este arquivo utiliza HTML5 -->
+<!DOCTYPE html>
+<!-- Tag de abertura principal do site definindo o idioma como Português do Brasil -->
+<html lang="pt-BR">
+<head>
+  <!-- Define o padrão de codificação de caracteres UTF-8 para evitar erros de acentuação -->
+  <meta charset="UTF-8">
+  <!-- Garante que a interface se adapte corretamente a telas de celulares, tablets e computadores -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Define o título da página que aparece na aba superior do navegador -->
+  <title>ClickServiços — Profissionais</title>
+  <!-- Define o Favicon, que é o pequeno ícone que aparece ao lado do título na aba do navegador -->
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <!-- Importa os estilos CSS genéricos compartilhados por todo o ecossistema do site -->
+  <link rel="stylesheet" href="../styles/global.css">
+  <!-- Importa as regras de estilização específicas da página principal de buscas (Home) -->
+  <link rel="stylesheet" href="../styles/home.css">
+</head>
+<body>
+
+  <!-- Barra de Navegação Superior (Navbar): Concentra o logotipo, boas-vindas e ações do usuário logado -->
+  <nav class="navbar">
+    <!-- Bloco esquerdo da barra de navegação com a logo e o ícone do projeto -->
+    <div class="logo">
+    <img src="/assets/iconee_sem_fundo.png" alt="" class="icon">
+    <a href="../pages/home.html" class="navbar-brand">Click<em>Serviços</em></a>
+    </div>
+    <!-- Bloco direito da barra contendo dados do usuário e botão de logout -->
+    <div class="navbar-actions">
+      <!-- Exibe uma mensagem de boas-vindas dinâmica. O atributo 'data-user-name' será interceptado pelo JS para injetar o nome do usuário real -->
+      <span class="hide-mobile" style="font-size:.84rem;color:var(rgb(255, 255, 255))">
+        Olá, <strong data-user-name>Visitante</strong>
+      </span>
+      <!-- Link para o painel privado do usuário. Possui um atributo personalizado para controle de permissões -->
+      <a href="painel.html" class="btn-ghost hide-mobile" data-auth="logado" style="font-size:.84rem;color:(White)">Meu Painel</a>
+      <!-- Botão que executa a função Javascript sair() para fazer o logoff do sistema -->
+      <button class="btn-secondary" onclick="sair()" style="font-size:.84rem;color:white" >Sair</button>
+      <!-- Foto de perfil do usuário. O JS usará 'data-user-foto' para trocar a imagem padrão pela real do banco de dados -->
+      <img class="avatar" src="https://i.pravatar.cc/34" data-user-foto alt="avatar">
+    </div>
+  </nav>
+
+  <!-- Div Container Principal: Divide a tela entre os Filtros (Sidebar) e os Resultados (Main) usando CSS Grid/Flexbox -->
+  <div class="home-layout">
+
+    <!-- ── SIDEBAR (Barra Lateral Esquerda) ── Contém todas as opções de refinamento da pesquisa -->
+    <aside class="sidebar">
+      <!-- Seção de filtro por Categorias. A div interior está vazia porque o JS ('home.js') criará as tags clicáveis dinamicamente -->
+      <div class="sidebar-section">
+        <h3>Categoria</h3>
+        <div class="filter-chips" id="catChips"></div>
+      </div>
+
+      <!-- Seção de filtro geográfico com opções pré-definidas para cidades de Pernambuco -->
+      <div class="sidebar-section">
+        <h3>Cidade</h3>
+        <select class="sidebar-select" id="filtroCidade">
+          <option value="">Todas</option>
+          <option value="Recife">Recife</option>
+          <option value="Olinda">Olinda</option>
+          <option value="Caruaru">Caruaru</option>
+        </select>
+      </div>
+
+      <!-- Seção de filtro demográfico por gênero do profissional cadastrado -->
+      <div class="sidebar-section">
+        <h3>Gênero</h3>
+        <select class="sidebar-select" id="filtroGenero">
+          <option value="todos">Todos</option>
+          <option value="feminino">Feminino</option>
+          <option value="masculino">Masculino</option>
+        </select>
+      </div>
+
+      <!-- Seção de filtro por reputação (estrelas), utilizando inputs do tipo "radio" para permitir apenas uma seleção por vez -->
+      <div class="sidebar-section">
+        <h3>Avaliação mínima</h3>
+        <div class="stars-filter">
+          <label class="star-opt"><input type="radio" name="minEstrelas" value="4.5"><span>★★★★½  4.5+</span></label>
+          <label class="star-opt"><input type="radio" name="minEstrelas" value="4"><span>★★★★  4.0+</span></label>
+          <label class="star-opt"><input type="radio" name="minEstrelas" value="3"><span>★★★  3.0+</span></label>
+        </div>
+      </div>
+
+      <!-- Botão para redefinir o estado dos filtros executando a função limparFiltros() do script -->
+      <button class="btn-clear-filters" onclick="limparFiltros()">✕ Limpar filtros</button>
+    </aside>
+
+    <!-- ── MAIN (Painel de Conteúdo Principal) ── Onde os resultados são exibidos -->
+    <main class="main-content">
+
+       <!-- Seção Banner (Hero): Cabeçalho visual de impacto com imagem de fundo e frase de boas-vindas -->
+      <section class="home-hero">
+        <img src="/assets/cacauuuuu.png" alt="backgound" class="hero-bg">
+        <div class="home-hero-content">
+          <span class="hero-mini">Profissionais verificados em Pernambuco</span>
+          <h1>Um click para solucão<br>dos seus problemas</h1>
+          <p>Eletricistas, encanadores, pintores, montadorese diversos profissionais prontos para ajudar você.</p>
+        </div>
+      </section>
+
+      <!-- Cabeçalho dos Resultados: Mostra a quantidade de itens encontrados e permite alterar a ordem de exibição -->
+      <div class="results-header">
+        <div>
+          <h1 class="results-title"><strong>Profissionais disponíveis</strong></h1>
+          <!-- O id 'resultCount' permite que o JS atualize o texto com o número real de resultados filtrados -->
+          <p class="results-count" id="resultCount">6 profissionais</p>
+        </div>
+        <select class="sort-select" id="filtroOrdenar">
+          <option value="">Ordenar por</option>
+          <option value="estrelas">Melhor avaliação</option>
+          <option value="avaliacoes">Mais avaliações</option>
+          <option value="tempo">Mais experiente</option>
+        </select>
+      </div>
+
+      <!-- Campo de Busca em tempo real: O usuário pode digitar nomes ou palavras-chave diretamente neste campo -->
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="buscaInput" placeholder="Buscar por serviço, nome ou especialidade...">
+      </div>
+
+      <!-- Grade dos Profissionais (Grid): Espaço onde os cards de cada profissional cadastrado serão renderizados pelo JavaScript. 
+           Inicia mostrando "Carregando..." enquanto busca os dados no arquivo db.js -->
+      <div class="prof-grid" id="profGrid">
+        <div class="empty-state"><p>Carregando...</p></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Contêiner invisível reservado para exibir notificações rápidas e temporárias na tela (Toasts de sucesso/erro) -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Carregamento das dependências e da lógica de controle da aplicação -->
+  <!-- Carrega a simulação do banco de dados local com o array de profissionais cadastrados -->
+  <script src="../scripts/db.js"></script>
+  <!-- Carrega o gerenciamento de sessões e segurança (dados do usuário atual logado) -->
+  <script src="../scripts/auth.js"></script>
+  <!-- Carrega a lógica que junta tudo: escuta os filtros, faz as buscas e desenha os cards na tela -->
+  <script src="../scripts/home.js"></script>
+  <!-- Executa uma função de segurança imediata: se o usuário não estiver logado, ele é expulso de volta para a index.html -->
+  <script>requireAuth('../../index.html');</script>
+
+</body>
+</html>

@@ -23,16 +23,34 @@
 .pnav-item:hover { background: var(--off-white); color: var(--text-1); }
 .pnav-item:hover svg { opacity: 1; }
 .pnav-item.active {
-  background: rgba(9,30,62,.06); color: var(--navy); font-weight: 600;
-  border-left: 2px solid var(--navy); padding-left: calc(.85rem - 2px);
+  background: rgba(9,30,62,.06); color: var(--sand); font-weight: 600;
+  border-left: 2px solid var(--sand); padding-left: calc(.85rem - 2px);
 }
-.pnav-item.active svg { opacity: 1; stroke: var(--navy); }
+.pnav-item.active svg { opacity: 1; stroke: var(--sand); }
 .pnav-sep { height: 1px; background: var(--border); margin: .75rem .25rem; }
 
 /*Navbar alterada*/
 .navbar{
-  background: #091E3E;
+ background: linear-gradient( 135deg, #091E3F 0%, #091E3F 50%, #184FA4 94%); /* Gradiente azul escuro */
+  display: flex;
+  justify-content: space-between; /* Alinha os itens (logo e menu) nas extremidades */
+  align-items: center; /* Centraliza verticalmente os itens do menu */
+  padding: 10px 20px;
 }
+ 
+/*logo da casinhas*/
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5px; /* Espaçamento mínimo entre a imagem e o texto do logo */
+}
+
+.icon{
+  height: 50px;
+  width: 75px;
+  transform: translateY(-5px); /* Move levemente o ícone para cima */
+}
+
 
 /*Nome clickserviços alterados*/
 .navbar-brand {
@@ -122,12 +140,14 @@
 .kpi-l { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-3); }
 .kpi-bar { height: 4px; background: var(--off-white-2); border-radius: 2px; margin-top: .5rem; overflow: hidden; }
 .kpi-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 1s cubic-bezier(.4,0,.2,1); }
+.kpi-stars {color: #ffb400; font-size: 1.2rem;letter-spacing: 2px;}
+
 
 /* Overview grid */
 .overview-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
 .ov-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-sm); }
 .ov-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-.ov-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); }
+.ov-label { font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--sand); }
 .ov-desc { font-size: .88rem; color: var(--text-2); line-height: 1.75; }
 .ov-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
 .ov-tag { padding: 4px 10px; background: var(--off-white); border: 1px solid var(--border); border-radius: 99px; font-size: .75rem; color: var(--text-2); }
@@ -153,7 +173,7 @@
   align-self: flex-end;
 }
 .btn-step-sm:hover { background: var(--navy-mid); }
-
+  
 /* Serviços editor */
 .services-editor { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .5rem; }
 .svc-tag { display: inline-flex; align-items: center; gap: .35rem; padding: 5px 12px; background: var(--off-white); border: 1px solid var(--border); border-radius: 99px; font-size: .8rem; color: var(--text-1); }

@@ -238,7 +238,69 @@
       "status": "disponivel",
       "cardLinks": [],
       "avaliacoes": []
+    },
+    {
+  "id": "p007",
+  "usuarioId": null,
+  "nome": "Cacau",
+  "foto": "/assets/caio.png",
+  "titulo": "Faz Tudo Residencial",
+  "descricao": "Realiza pequenos serviços residenciais em geral, porém possui histórico de atrasos, acabamento inconsistente e avaliações negativas relacionadas à organização, qualidade do serviço e comunicação. Costuma demorar para visualizar e responder mensagens, além de frequentemente não atualizar os clientes sobre o andamento dos serviços.",
+  "servicos": [
+    "Pequenos Reparos",
+    "Montagem de Móveis",
+    "Troca de Chuveiro",
+    "Instalação de Prateleiras",
+    "Pintura Básica",
+    "Consertos Gerais"
+  ],
+  "cidade": "Recife",
+  "estado": "PE",
+  "genero": "masculino",
+  "estrelas": 2.1,
+  "totalAvaliacoes": 37,
+  "tempoPlatforma": 4,
+  "horario": "Horários Irregulares",
+  "precificacao": {
+    "tipo": "negociar",
+    "valor": null
+  },
+  "status": "disponivel",
+  "cardLinks": [
+    {
+      "id": "cl004",
+      "descricao": "Montagem de guarda-roupa com portas desalinhadas e acabamento incompleto",
+      "fotoAntes": "https://picsum.photos/seed/cacau1a/400/300",
+      "fotoDepois": "https://picsum.photos/seed/cacau1b/400/300",
+      "tempo": "2 dias",
+      "materiais": [
+        "Parafusos",
+        "Martelo",
+        "Chave Philips"
+      ]
     }
+  ],
+  "avaliacoes": [
+    {
+      "id": "av004",
+      "clienteId": "u003",
+      "clienteNome": "João Ricardo",
+      "clienteFoto": "https://i.pravatar.cc/150?img=33",
+      "estrelas": 2,
+      "comentario": "Chegou atrasado e o serviço ficou mal acabado. Precisei contratar outra pessoa depois.",
+      "data": "2024-04-02"
+    },
+    {
+      "id": "av005",
+      "clienteId": "u004",
+      "clienteNome": "Ana Lima",
+      "clienteFoto": "https://i.pravatar.cc/150?img=56",
+      "estrelas": 1,
+      "comentario": "Bagunçou minha cozinha durante o reparo e não resolveu o problema completamente.",
+      "data": "2024-04-11"
+    }
+  ]
+}
   ],
   "categorias": [
     { "id": "cat01", "nome": "Elétrica", "icone": "⚡" },
