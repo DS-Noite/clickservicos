@@ -11,10 +11,12 @@
 
   <!-- ══ NAVBAR ══ -->
   <nav class="navbar">
-    <a href="home.html" class="navbar-brand">Click<em>Serviços</em></a>
+    <div class ="logo">
+      <img src="/assets/iconee_sem_fundo.png" alt=""  class="icon">
+    <a href="home.html" class="navbar-brand">Click<em>Serviços</em></a></div>
     <div class="navbar-actions">
       <a href="home.html" class="btn-ghost">← Voltar</a>
-      <a href="../../index.html" class="btn-secondary" onclick="clearSession(); return true;">Sair</a>
+      <a href="../../index.html" class="btn-secondary" style="font-size:.84rem;color:white" onclick="clearSession(); return true;">Sair</a>
       <img class="avatar" src="https://i.pravatar.cc/40" data-user-foto alt="avatar">
     </div>
   </nav>
@@ -80,7 +82,7 @@
         <button class="btn-primary" onclick="abrirChat(document.getElementById('idName').textContent)">
           💬 Enviar Mensagem
         </button>
-        <button class="btn-secondary">
+        <button class="btn-solicitar">
           📞 Solicitar Orçamento
         </button>
       </div>

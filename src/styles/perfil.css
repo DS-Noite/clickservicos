@@ -85,13 +85,48 @@
 .contact-card .btn-secondary { width: 100%; padding: .8rem; }
 
 /* ══ MAIN ══ */
+.navbar{
+  background: linear-gradient( 135deg, #091E3F 0%, #091E3F 50%, #184FA4 94%); /* Gradiente azul escuro */
+  display: flex;
+  justify-content: space-between; /* Alinha os itens (logo e menu) nas extremidades */
+  align-items: center; /* Centraliza verticalmente os itens do menu */
+  padding: 10px 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5px; /* Espaçamento mínimo entre a imagem e o texto do logo */
+}
+
+.icon{
+  height: 50px;
+  width: 75px;
+  transform: translateY(-5px); /* Move levemente o ícone para cima */
+}
+
+
+
+
+/*Nome clickserviços alterados*/
+.navbar-brand {
+  color: white; /* Click */
+  text-decoration: none;
+  font-style: normal;
+}
+
+.navbar-brand em {
+  color: #D64824; /* Serviços */
+  font-style: normal; /* tira o itálico padrão do <em> */
+}
+
 .perfil-main { display: flex; flex-direction: column; gap: 2rem; }
 
 .perfil-section h2 {
   font-family: var(--font-display); font-size: 1.45rem;
   font-weight: 400; letter-spacing: -.02em;
   margin-bottom: 1rem; padding-bottom: .6rem;
-  border-bottom: 1px solid var(--border); color: var(--text-1);
+  border-bottom: 1px solid var(--border); color: var(--sand);
 }
 
 .services-grid { display: flex; flex-wrap: wrap; gap: .5rem; }
@@ -119,7 +154,7 @@
 .cardlink-chip {
   padding: 2px 8px; background: var(--off-white);
   border: 1px solid var(--border); border-radius: 99px;
-  font-size: .68rem; color: var(--text-3);
+  font-size: .68rem; color: var(--sand);
 }
 .cardlinks-empty {
   padding: 1.5rem; text-align: center; color: var(--text-3);
