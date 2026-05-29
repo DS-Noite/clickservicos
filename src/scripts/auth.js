@@ -151,3 +151,45 @@ function aplicarSessaoNaUI() {
      el.style.display = session ? 'none' : '';
   });
 }
+
+/**
+ * Inicializa os ouvintes de clique nos botões de alternância de função (Cliente / Profissional)
+ * Aplica as classes CSS correspondentes para a troca de cores.
+ */
+function inicializarAlternadorDeModos() {
+  // Captura o container principal da página
+  const loginPage = document.querySelector('.login-page');
+  // Captura os botões de alternância de papel (role)
+  const botoesRole = document.querySelectorAll('.role-btn');
+
+  if (!loginPage || botoesRole.length === 0) return;
+
+  botoesRole.forEach(botao => {
+    botao.addEventListener('click', function() {
+      // Remove a classe 'active' de todos os botões do grupo
+      botoesRole.forEach(b => b.classList.remove('active'));
+      
+      // Adiciona a classe 'active' apenas no botão clicado
+      this.classList.add('active');
+
+      // Verifica se o botão clicado possui o texto correspondente a Profissional
+      // (Pode adaptar o 'textContent' ou usar um atributo data-role="profissional" se preferir)
+      const exibeProfissional = this.textContent.toLowerCase().includes('profissional');
+
+      if (exibeProfissional) {
+        // Ativa o modo Laranja com detalhes em Azul
+        loginPage.classList.add('mode-profissional');
+      } else {
+        // Remove o modo e volta ao padrão original da imagem (Navy com detalhes Laranja)
+        loginPage.classList.remove('mode-profissional');
+      }
+    });
+  });
+}
+
+// Executa a função assim que o DOM (HTML) estiver totalmente carregado na tela
+document.addEventListener('DOMContentLoaded', () => {
+  inicializarAlternadorDeModos();
+});
+
+

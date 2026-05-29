@@ -235,3 +235,76 @@ function sair() {
 /* ── Start ── */
 /* Aciona o gatilho inicializando o feed assim que a estrutura DOM do documento estiver totalmente lida pelo navegador */
 document.addEventListener('DOMContentLoaded', initHome);
+
+
+/* Adicione isso no final do seu arquivo home.js */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btnHamburger = document.getElementById('btnHamburger');
+  const sidebar = document.querySelector('.sidebar');
+
+  if (btnHamburger && sidebar) {
+    btnHamburger.addEventListener('click', (e) => {
+      e.stopPropagation(); // Evita que o clique feche o menu imediatamente
+      btnHamburger.classList.toggle('active');
+      sidebar.classList.toggle('active');
+    });
+
+    // Opcional: Fecha o menu se o usuário clicar no conteúdo principal (fora da sidebar)
+    document.addEventListener('click', (e) => {
+      if (!sidebar.contains(e.target) && !btnHamburger.contains(e.target)) {
+        btnHamburger.classList.remove('active');
+        sidebar.classList.remove('active');
+      }
+    });
+    
+    // Fecha o menu ao clicar em algum filtro (melhor usabilidade no mobile)
+    const filtros = sidebar.querySelectorAll('select, input, button');
+    filtros.forEach(filtro => {
+      filtro.addEventListener('change', () => {
+        // Se for input de texto, talvez o usuário ainda esteja digitando, 
+        // então checamos se não é o campo de busca antes de fechar.
+        if(filtro.id !== 'buscaInput') {
+          btnHamburger.classList.remove('active');
+          sidebar.classList.remove('active');
+        }
+      });
+    });
+  }
+});
+
+
+// Adicione isso junto com o código do hambúrguer no seu home.js
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const btnHamburger = document.getElementById('btnHamburger');
+    const sidebar = document.querySelector('.sidebar');
+    
+    if (sidebar && sidebar.classList.contains('active')) {
+      btnHamburger.classList.remove('active');
+      sidebar.classList.remove('active');
+    }
+  }
+});
+
+/* Lógica de ativação do Menu Hambúrguer com ajuste de Grid */
+document.addEventListener('DOMContentLoaded', () => {
+  const btnHamburger = document.getElementById('btnHamburger');
+  const homeLayout = document.querySelector('.home-layout');
+
+  if (btnHamburger && homeLayout) {
+    btnHamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      btnHamburger.classList.toggle('active');
+      homeLayout.classList.toggle('menu-aberto'); // Abre/fecha a coluna alterando o grid do layout
+    });
+
+    // Opcional: Fecha o menu se o usuário apertar a tecla ESC no teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        btnHamburger.classList.remove('active');
+        homeLayout.classList.remove('menu-aberto');
+      }
+    });
+  }
+});

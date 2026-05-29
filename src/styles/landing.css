@@ -10,6 +10,7 @@
   align-items: center; /* Centraliza verticalmente os itens do menu */
   padding: 10px 20px;
 }
+
 /* Container do logo */
 .logo{
   display:flex;
@@ -39,12 +40,12 @@
   color: var(--text-1); letter-spacing: -.02em;
 }
 .lnav-brand em { color: var(--accent); font-style: normal; }
-.lnav-links { display: flex; gap: 2rem; }
+.lnav-links { display: flex; gap: 5rem; }
 .lnav-links a {
-  font-size: .88rem; font-weight: 500; color: var(--text-2);
+  font-size: .88rem; font-weight: 500; color: var(--navy);
   transition: color var(--t);
 }
-.lnav-links a:hover { color: var(--text-1); }
+.lnav-links a:hover { color: var(--sand); }
 .lnav-actions { display: flex; align-items: center; gap: .75rem; }
 
 .btn-nav-cta {
@@ -123,7 +124,7 @@
   font-size: .9rem; font-weight: 600; color: var(--text-2);
   transition: color var(--t), gap var(--t);
 }
-.btn-hero-ghost:hover { color: var(--navy); gap: .8rem; }
+.btn-hero-ghost:hover { color: var(--sand); gap: .8rem; }
 
 .hero-trust { display: flex; align-items: center; gap: .75rem; }
 .trust-avatars { display: flex; }

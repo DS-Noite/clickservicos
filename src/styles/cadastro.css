@@ -3,53 +3,136 @@
    ══════════════════════════════════════════ */
 body { background: var(--off-white); }
 
-.cadastro-wrapper { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+.cadastro-wrapper { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  min-height: 100vh; 
+
+  /* ──────── VARIÁVEIS DE COR PARA CONTROLE DE ESTILO ──────── */
+  --aside-bg: var(--navy);
+  --aside-accent: var(--sand);
+  --aside-text: var(--off-white);
+  --aside-muted-1: rgba(249,249,243,.55);
+  --aside-muted-2: rgba(249,249,243,.45);
+  --aside-muted-3: rgba(249,249,243,.35);
+  --aside-muted-4: rgba(249,249,243,.2);
+  --aside-border-line: rgba(255,255,255,.1);
+  --btn-main-bg: var(--navy);
+  --btn-main-hover: var(--navy-mid);
+}
+
+/* CLASSE COMPLEMENTAR ATIVADA PELO JS (SÓ INVERTE CORES, NÃO QUEBRA O LAYOUT) */
+/* O QUE É: Uma classe seletora composta. Ela só é aplicada quando a página (.cadastro-wrapper) 
+   recebe a classe (.mode-profissional) via JavaScript (quando o usuário clica em "Profissional").
+   PARA QUE SERVE: Sobrescrever as cores do modo "Cliente" (padrão azul) pelas cores do modo "Profissional". */
+.cadastro-wrapper.mode-profissional {
+
+  /* O QUE É: Variável de cor de fundo (Background).
+     PARA QUE SERVE: Troca o fundo do painel esquerdo (que era azul marinho) para a cor laranja (--sand). */
+  --aside-bg: var(--sand);
+
+  /* O QUE É: Variável de cor de destaque/sotaque (Accent).
+     PARA QUE SERVE: Muda a cor do texto estilizado "da rede." e da linha vertical decorativa para azul escuro (--navy). */
+  --aside-accent: var(--navy); 
+
+  /* O QUE É: Variável de cor principal do texto.
+     PARA QUE SERVE: Pinta o título principal "Faça parte" e os números grandes das estatísticas (6+, 4.8, PE) de branco puro. */
+  --aside-text: white; 
+
+  /* O QUE É: Variável de cor secundária com 90% de opacidade (quase opaco).
+     PARA QUE SERVE: Usada para pequenos textos informativos de forte relevância que precisam de boa leitura, mas sem brilhar tanto quanto o título principal. */
+  --aside-muted-1: rgba(10, 25, 47, 0.9);
+
+  /* O QUE É: Variável de cor com 70% de opacidade.
+     PARA QUE SERVE: Define a cor do parágrafo descritivo ("Conecte-se a profissionais de confiança..."). */
+  --aside-muted-2: rgba(10, 25, 47, 0.7);
+
+  /* O QUE É: Variável de cor intermediária com 50% de opacidade (metade da cor).
+     PARA QUE SERVE: Define a cor das legendas das estatísticas em letras pequenas ("PROFISSIONAIS", "NOTA MÉDIA", "REGIÃO"). */
+  --aside-muted-3: rgba(255, 255, 255, 0.5);
+
+  /* O QUE É: Variável de cor suave com 30% de opacidade.
+     PARA QUE SERVE: Define a cor dos passos visuais desativados (como os números 02 e 03 das etapas do topo enquanto o usuário está na etapa 01). */
+  --aside-muted-4: rgba(10, 25, 47, 0.3);
+
+  /* O QUE É: Variável de cor para linhas divisórias com 15% de opacidade.
+     PARA QUE SERVE: Controla a cor daquela linha fina vertical pontilhada ou contínua que separa visualmente os passos na esquerda. */
+  --aside-border-line: rgba(10, 25, 47, 0.15);
+
+  /* O QUE É: Variável de cor de fundo do botão principal (State normal).
+     PARA QUE SERVE: Faz o botão "Continuar" e as bordinhas de seleção do painel direito ficarem laranja (--sand) para combinar com o tema do profissional. */
+  --btn-main-bg: var(--sand);
+
+  /* O QUE É: Variável de cor do botão principal para o estado de transição (Hover).
+     PARA QUE SERVE: Define a cor (um laranja ligeiramente mais escuro) que o botão assume quando o usuário passa o mouse por cima dele, criando o efeito visual de clique. */
+  --btn-main-hover: var(--sand-light);
+}
 
 /* ── Aside ── */
 .cadastro-aside {
-  background: var(--navy); position: relative; overflow: hidden;
+  background: var(--aside-bg); /* Modificado */
+  position: relative; overflow: hidden;
   display: flex; flex-direction: column; justify-content: space-between;
   padding: 3rem 3.5rem;
+  transition: background 0.3s ease;
 }
-.cadastro-aside::before {
-  content: ''; position: absolute; bottom: -60px; left: -60px;
-  width: 400px; height: 400px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(214,72,36,.15) 0%, transparent 70%);
-  pointer-events: none;
+.hero-stats { display: flex; gap: 3rem; position: relative; z-index: 1; }
+.stat-item { display: flex; flex-direction: column; gap: .15rem; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2.8rem; font-weight: 700;
+  color: var(--aside-text); line-height: 1; letter-spacing: -.04em; /* Modificado */
+  transition: color 0.3s ease;
 }
+.stat-label {
+  font-size: .65rem; font-weight: 600;
+  color: var(--aside-muted-3); letter-spacing: .1em; text-transform: uppercase; /* INFORMACOES DO FIM DA PAGINA*/
+  transition: color 0.3s ease;
+}
+
 .aside-logo {
-  font-family: var(--font-display); font-size: 1.4rem; font-weight: 600;
-  color: var(--off-white); letter-spacing: -.02em; position: relative; z-index: 1;
+  font-family: var(--font-display); font-size: 1.7rem; font-weight: 650;
+  color: var(--aside-text); letter-spacing: -.02em; position: relative; z-index: 1; /* Modificado */
+  transition: color 0.3s ease;
+  /* 👇 ADICIONE ESTAS DUAS LINHAS 👇 */
+  top: -20px;  /* Move o texto para CIMA (aumente o valor negativo se quiser subir mais, ex: -15px) */
+  left: -20px;  /* Move o texto para a DIREITA (aumente o valor se quiser mover mais, ex: 15px) */
 }
-.aside-logo em { color: var(--sand); font-style: normal; }
+
+
+.aside-logo em { color: var(--aside-accent); font-style: normal; transition: color 0.3s ease; } /* Modificado */
 .aside-headline { position: relative; z-index: 1; }
-.aside-headline h2 {
-  font-family: var(--font-display); font-size: clamp(2.5rem, 3.5vw, 4rem);
-  font-weight: 300; letter-spacing: -.04em; line-height: .95; color: var(--off-white); margin-bottom: 1.25rem;
+.aside-headline h2{
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 5vw, 5.5rem);
+  font-weight: 300; line-height: .95; letter-spacing: -.04em;
+  color: var(--aside-text); margin-bottom: 1.5rem; 
+  transition: background 0.3s ease;
 }
-.aside-headline h2 strong { display: block; font-weight: 700; font-style: italic; color: var(--sand); }
-.aside-headline p { font-size: .88rem; color: rgba(249,249,243,.45); line-height: 1.75; max-width: 320px; }
+.aside-headline h2 strong {  display: block; font-weight: 700; font-style: italic; color: var(--aside-accent);  } /* Modificado */
+.aside-headline p { font-size: .88rem; color: white; line-height: 1.75; max-width: 320px; transition: color 0.3s ease; } /* Modificado */
 .aside-steps-visual { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 0; }
 .asv-item { display: flex; align-items: center; gap: 1rem; padding: .6rem 0; }
 .asv-item span {
   font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
-  color: rgba(249,249,243,.2); letter-spacing: -.03em; line-height: 1; min-width: 40px;
+  color: var(--aside-muted-4); letter-spacing: -.03em; line-height: 1; min-width: 40px; /* Modificado */
+  transition: color 0.3s ease;
 }
-.asv-item p { font-size: .85rem; color: rgba(249,249,243,.45); }
-.asv-line { width: 1px; height: 20px; background: rgba(255,255,255,.1); margin-left: 18px; }
-.aside-line { position: absolute; right: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, transparent 5%, var(--sand) 30%, var(--sand) 70%, transparent 95%); }
+.asv-item p { font-size: .85rem; color: var(--aside-muted-2); transition: color 0.3s ease; } /* Modificado */
+.asv-line { width: 1px; height: 20px; background: var(--aside-border-line); margin-left: 18px; transition: background 0.3s ease; } /* Modificado */
+.aside-line { position: absolute; right: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, transparent 5%, var(--aside-accent) 30%, var(--aside-accent) 70%, transparent 95%); transition: background 0.3s ease; } /* Modificado */
 
 /* ── Painel ── */
 .cadastro-panel { background: var(--off-white); display: flex; align-items: center; justify-content: center; padding: 3rem 2.5rem; overflow-y: auto; }
 .cadastro-box { width: 100%; max-width: 440px; }
-.back-link { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; color: var(--text-3); margin-bottom: 2rem; transition: color var(--t); }
+.back-link { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; color: var(--navy); margin-bottom: 2rem; transition: color var(--t); }
 .back-link:hover { color: var(--accent); }
 
 /* Steps indicator */
 .steps { display: flex; align-items: center; margin-bottom: 2.5rem; }
 .step { display: flex; align-items: center; gap: .45rem; }
 .step-num { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; background: var(--off-white-2); border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; color: var(--text-3); transition: all var(--t); }
-.step.active .step-num { background: var(--navy); border-color: var(--navy); color: #fff; }
+.step.active .step-num { background: var(--btn-main-bg); border-color: var(--btn-main-bg); color: #fff; } /* Modificado */
 .step.done .step-num { background: #10b981; border-color: #10b981; color: #fff; }
 .step-label { font-size: .73rem; color: var(--text-3); font-weight: 500; transition: color var(--t); }
 .step.active .step-label { color: var(--text-1); font-weight: 600; }
@@ -74,7 +157,7 @@ body { background: var(--off-white); }
   overflow: hidden;
 }
 .type-option:hover { border-color: rgba(9,30,62,.25); box-shadow: var(--shadow-md); }
-.type-option.selected { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(9,30,62,.06); }
+.type-option.selected { border-color: var(--btn-main-bg); box-shadow: 0 0 0 3px rgba(9,30,62,.06); } /* Modificado */
 
 .type-option-inner { display: flex; align-items: center; gap: 1.25rem; padding: 1.25rem 1.25rem; position: relative; }
 
@@ -85,7 +168,7 @@ body { background: var(--off-white); }
   transition: all var(--t);
 }
 .type-check svg { display: none; }
-.type-option.selected .type-check { background: var(--navy); border-color: var(--navy); }
+.type-option.selected .type-check { background: var(--btn-main-bg); border-color: var(--btn-main-bg); } /* Modificado */
 .type-option.selected .type-check svg { display: block; stroke: #fff; }
 
 .type-icon-svg {
@@ -96,7 +179,7 @@ body { background: var(--off-white); }
 }
 .type-icon-svg svg { width: 20px; height: 20px; stroke: var(--text-3); transition: stroke var(--t); }
 .type-option.selected .type-icon-svg { background: rgba(9,30,62,.05); border-color: rgba(9,30,62,.15); }
-.type-option.selected .type-icon-svg svg { stroke: var(--navy); }
+.type-option.selected .type-icon-svg svg { stroke: var(--btn-main-bg); } /* Modificado */
 
 .type-text { flex: 1; }
 .type-label { font-size: 1rem; font-weight: 600; color: var(--text-1); margin-bottom: .2rem; }
@@ -105,12 +188,12 @@ body { background: var(--off-white); }
 /* Botões */
 .btn-step {
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-  background: var(--navy); color: #fff; padding: .9rem 1.75rem;
+  background: var(--btn-main-bg); color: #fff; padding: .9rem 1.75rem; /* Modificado */
   border-radius: var(--radius-sm); font-size: .9rem; font-weight: 600;
   border: none; cursor: pointer; transition: background var(--t), transform var(--t);
   width: 100%;
 }
-.btn-step:hover { background: var(--navy-mid); transform: translateY(-1px); }
+.btn-step:hover { background: var(--btn-main-hover); transform: translateY(-1px); } /* Modificado */
 .btn-back {
   display: inline-flex; align-items: center; justify-content: center;
   background: transparent; color: var(--text-2);
@@ -118,7 +201,7 @@ body { background: var(--off-white); }
   font-size: .88rem; font-weight: 500; border: 1px solid var(--border);
   cursor: pointer; transition: all var(--t); white-space: nowrap;
 }
-.btn-back:hover { border-color: var(--navy); color: var(--navy); }
+.btn-back:hover { border-color: var(--btn-main-bg); color: var(--btn-main-bg); } /* Modificado */
 .form-actions { display: flex; gap: .75rem; margin-top: .25rem; }
 
 .login-hint { text-align: center; font-size: .82rem; color: var(--text-3); margin-top: -.75rem; }
@@ -138,7 +221,7 @@ body { background: var(--off-white); }
 }
 .success-check svg { width: 24px; height: 24px; }
 .success-title { font-family: var(--font-display); font-size: 2.8rem; font-weight: 300; letter-spacing: -.04em; line-height: 1; color: var(--text-1); }
-.success-title strong { font-weight: 700; font-style: italic; color: var(--navy); }
+.success-title strong { font-weight: 700; font-style: italic; color: var(--btn-main-bg); } /* Modificado */
 .success-desc { font-size: .9rem; color: var(--text-2); line-height: 1.75; max-width: 340px; }
 
 /* Responsivo */

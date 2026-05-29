@@ -16,7 +16,18 @@ function selecionarTipo(tipo) {
   document.querySelectorAll('.type-option').forEach(c => c.classList.remove('selected'));
   
   /* Adiciona a classe 'selected' apenas no elemento que foi clicado (ex: 'tipo-cliente' ou 'tipo-profissional') */
-  document.getElementById('tipo-' + tipo).classList.add('selected');
+  const elementoSelecionado = document.getElementById('tipo-' + tipo);
+  if (elementoSelecionado) elementoSelecionado.classList.add('selected');
+
+  /* INTERFACE DINÂMICA: Altera o esquema de cores com base na seleção sem danificar o layout */
+  const wrapper = document.querySelector('.cadastro-wrapper');
+  if (wrapper) {
+    if (tipo === 'profissional') {
+      wrapper.classList.add('mode-profissional');
+    } else {
+      wrapper.classList.remove('mode-profissional');
+    }
+  }
 
   /* Busca o bloco de campos extras que só os profissionais preenchem */
   const extras = document.getElementById('extrasProfissional');
@@ -58,7 +69,7 @@ function irStep(num) {
     const l = document.getElementById('line' + i);
     
     /* Adiciona a classe 'done' se a linha estiver antes da etapa atual, senão remove */
-    if (l) l.classList.toggle('done', i < num);
+    if (l) l.toggle('done', i < num);
   });
 }
 
@@ -77,24 +88,33 @@ function handleCadastro(e) {
   const erroEl = document.getElementById('cadErro'); /* Elemento de texto onde as mensagens de erro aparecem */
 
   /* Oculta o painel de erro antes de iniciar uma nova validação */
-  erroEl.style.display = 'none';
+  if (erroEl) erroEl.style.display = 'none';
 
   /* Validação 1: Verifica se algum dos campos essenciais está vazio */
   if (!nome || !email || !senha) {
-    erroEl.textContent = 'Preencha todos os campos obrigatórios.';
-    erroEl.style.display = 'block'; return; /* Interrompe a função aqui caso haja erro */
+    if (erroEl) {
+      erroEl.textContent = 'Preencha todos os campos obrigatórios.';
+      erroEl.style.display = 'block';
+    }
+    return;
   }
   
   /* Validação 2: Exige tamanho mínimo de 6 caracteres para a segurança da senha */
   if (senha.length < 6) {
-    erroEl.textContent = 'A senha deve ter ao menos 6 caracteres.';
-    erroEl.style.display = 'block'; return;
+    if (erroEl) {
+      erroEl.textContent = 'A senha deve ter ao menos 6 caracteres.';
+      erroEl.style.display = 'block';
+    }
+    return;
   }
   
   /* Validação 3: Verifica se a confirmação de senha é idêntica à senha digitada */
   if (senha !== conf) {
-    erroEl.textContent = 'As senhas não coincidem.';
-    erroEl.style.display = 'block'; return;
+    if (erroEl) {
+      erroEl.textContent = 'As senhas não coincidem.';
+      erroEl.style.display = 'block';
+    }
+    return;
   }
 
   /* Monta a estrutura do novo usuário se todas as validações passarem */
@@ -111,8 +131,10 @@ function handleCadastro(e) {
     cadastradoEm: new Date().toISOString().split('T')[0] /* Salva a data atual no formato Ano-Mês-Dia */
   };
 
-  /* Salva o usuário recém-criado na sessão (provavelmente chamando a função do arquivo auth.js) */
-  setSession(novoUsuario);
+  /* Salva o usuário recém-criado na sessão */
+  if (typeof setSession === 'function') {
+    setSession(novoUsuario);
+  }
   
   /* Avança o formulário de cadastro para a etapa 3 (geralmente uma tela de sucesso/boas-vindas) */
   irStep(3);
