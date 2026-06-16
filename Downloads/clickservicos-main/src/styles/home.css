@@ -1,0 +1,526 @@
+/* ══════════════════════════════════════════
+   home.css — Feed de profissionais (light)
+   ══════════════════════════════════════════ */
+
+/* Define o layout principal da página usando Grid, criando uma coluna fixa para a sidebar e uma flexível para o conteúdo */
+.home-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr; /* Sidebar com 260px e o conteúdo principal ocupa o restante (1fr) */
+  min-height: calc(100vh - 64px); /* Altura mínima desconta os 64px da barra de navegação */
+}
+
+/* Estilização da barra de navegação superior */
+.navbar{
+  background: linear-gradient( 135deg, #091E3F 0%, #091E3F 50%, #184FA4 94%); /* Gradiente azul escuro */
+  display: flex;
+  justify-content: space-between; /* Alinha os itens (logo e menu) nas extremidades */
+  align-items: center; /* Centraliza verticalmente os itens do menu */
+  padding: 10px 20px;
+}
+
+/* Container do logotipo e ícone */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5px; /* Espaçamento mínimo entre a imagem e o texto do logo */
+}
+
+/* Ajustes de tamanho e posicionamento do ícone do logo */
+.icon{
+  height: 50px;
+  width: 75px;
+  transform: translateY(-5px); /* Move levemente o ícone para cima */
+}
+
+/* Classe utilitária (provavelmente para esconder textos em telas menores ou estilizar texto branco) */
+.hide-mobile{
+  color: white;
+}
+
+/* Estilização do link principal/nome da marca no menu (foco em "Click") */
+.navbar-brand {
+  color: white; /* Click */
+  text-decoration: none; /* Remove o sublinhado padrão de links */
+  font-style: normal;
+}
+
+/* Destaque para a palavra secundária dentro do logo (foco em "SERVIÇOS") */
+.navbar-brand em {
+  color: #D64824; /* Cor laranja/avermelhada para destaque */
+  font-weight: bold; /*deixamos o 'SERVIÇOS'  mais negrito */
+}
+
+/* ══ SIDEBAR ══ */
+/* Barra lateral esquerda contendo os filtros da página */
+.sidebar {
+  border-right: 1px solid var(--border); /* Linha divisória lateral direita */
+  padding: 2rem 1.25rem;
+  position: sticky; top: 64px; /* Fixa a sidebar no topo ao rolar a página (abaixo da navbar) */
+  height: calc(100vh - 64px); /* Ocupa exatamente a altura visível restante da tela */
+  overflow-y: auto; /* Permite rolagem vertical caso os filtros excedam a tela */
+  display: flex; flex-direction: column; gap: 1.5rem; /* Organiza os blocos de filtro verticalmente */
+  background: #fff;
+}
+
+/* Títulos das seções de filtros dentro da sidebar */
+.sidebar-section h3 {
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--sand); margin-bottom: .75rem;
+}
+
+/* Container para agrupar botões rápidos/tags de filtro */
+.filter-chips { display: flex; flex-wrap: wrap; gap: .35rem; }
+
+/* Customização dos campos de seleção (Select) da sidebar */
+.sidebar-select {
+  width: 100%; background: var(--off-white);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: .55rem .75rem; color: var(--text-1); font-size: .85rem;
+  outline: none; cursor: pointer; transition: border-color var(--t);
+  -webkit-appearance: none; /* Remove a seta padrão do navegador para sistemas iOS/Chrome */
+  /* Insere uma seta customizada em formato SVG via código de background */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a8fa8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px;
+}
+/* Efeito visual ao clicar/focar no select */
+.sidebar-select:focus { border-color: var(--accent); }
+
+/* Seção de filtro por estrelas (avaliação) */
+.stars-filter { display: flex; flex-direction: column; gap: .35rem; }
+/* Linha de opção individual de estrela */
+.star-opt { display: flex; align-items: center; gap: .5rem; cursor: pointer; padding: 3px 0; }
+/* Estilização do botão circular (radio) de avaliação */
+.star-opt input[type="radio"] { accent-color: var(--accent); width: 14px; height: 14px; cursor: pointer; }
+/* Texto descritivo ao lado das estrelas */
+.star-opt span { font-size: .82rem; color: var(--text-2); }
+
+/* Botão posicionado ao final da sidebar para limpar todos os filtros aplicados */
+.btn-clear-filters {
+  width: 100%; padding: .55rem; border-radius: var(--radius-sm);
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text-3); font-size: .78rem; cursor: pointer;
+  transition: all var(--t); margin-top: auto; /* O "margin-top: auto" joga o botão para o fim do container */
+}
+/* Efeito de hover (passar o mouse) no botão de limpar filtros */
+.btn-clear-filters:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ══ ÁREA PRINCIPAL ══ */
+
+/* Banner/Destaque superior da área de conteúdo */
+.home-hero {
+  height: 350px;
+  border-radius: var(--radius-lg);
+  overflow: hidden; /* Garante que imagens de fundo respeitem as bordas arredondadas */
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+/* Cria uma camada escura sobreposta (overlay) para garantir contraste do texto branco sobre a imagem */
+.home-hero::before{
+  content: '';
+  position: absolute;
+  inset: 0; /* Ocupa 100% de largura e altura do hero */
+  background:linear-gradient(90deg,rgba(9,30,62,.88) 0%,rgba(9,30,62,.65) 45%,rgba(9,30,62,.35) 100%);
+  z-index: 1; /* Fica acima da imagem, mas abaixo do texto */
+}
+
+/* Imagem de fundo do Banner principal */
+.hero-bg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
+  z-index: 0; /* Fica por baixo de tudo */
+}
+
+/* Caixa que guarda o texto e botões dentro do Banner */
+.home-hero-content {
+  position: relative;
+  z-index: 2; /* Fica acima do overlay escuro, tornando o texto legível e clicável */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza o conteúdo verticalmente */
+  padding: 3rem;
+}
+
+/* Pequena etiqueta (tag) acima do título principal no banner */
+.hero-mini{
+  display: inline-flex;
+  width: fit-content;
+  padding: .45rem .9rem;
+  border-radius: 999px; /* Formato de pílula arredondada */
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.08);
+  color: white;
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+/* Título principal do banner */
+.home-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 5rem); /* Fonte responsiva que se adapta ao tamanho da tela */
+  line-height: .95;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+/* Texto de apoio/descrição sob o título principal */
+.home-hero p {
+  color: rgba(255,255,255,.75);
+  max-width: 500px; /* Limita a largura para a leitura não ficar cansativa */
+  line-height: 1.7;
+}
+
+/* Container que envolve toda a área de listagem e buscas */
+.main-content { padding: 2rem 2.5rem; background: var(--off-white); }
+
+/* Cabeçalho que mostra o título dos resultados e a ordenação */
+.results-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; margin-bottom: 1.5rem; flex-wrap: wrap; gap: .75rem;
+}
+/* Estilo do título de resultados (Ex: "Profissionais Encontrados") */
+.results-title {
+  font-family: var(--font-body);
+  font-size: 2rem; font-weight: 300; letter-spacing: -.03em; color: var(--text-1);
+}
+/* Destaca termos em negrito no título */
+.results-title strong { font-weight: 700; }
+/* Texto menor mostrando o número total de resultados */
+.results-count { font-size: .78rem; color: var(--text-3); margin-top: .15rem; }
+
+/* Select de ordenação (Ex: "Ordenar por: Maior Preço") com estilo personalizado */
+.sort-select {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: .5rem 2rem .5rem .75rem;
+  color: var(--text-2); font-size: .82rem; cursor: pointer; outline: none;
+  transition: border-color var(--t); -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a8fa8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center;
+}
+.sort-select:focus { border-color: var(--accent); }
+
+/* Barra de pesquisa geral */
+.search-bar { position: relative; margin-bottom: 1.5rem; }
+/* Campo de entrada de texto da pesquisa */
+.search-bar input {
+  width: 100%; background: #ffff;
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: .8rem 1rem .8rem 2.75rem; /* Espaço na esquerda (.2.75rem) reservado para o ícone de lupa */
+  color: var(--text-1); font-size: .92rem; outline: none;
+  transition: border-color var(--t), box-shadow var(--t);
+  box-shadow: var(--shadow-sm);
+}
+/* Customização do texto de marca d'água do input */
+.search-bar input::placeholder { color: var(--navy); font-family: var(--font-body); }
+/* Brilho e efeito visual de foco no input de busca */
+.search-bar input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+/* Ícone de lupa posicionado de forma absoluta dentro da barra */
+.search-icon { position: absolute; left: .9rem; top: 50%; transform: translateY(-50%); color: var(--text-3); pointer-events: none; }
+
+/* ══ GRID DE CARDS ══ */
+/* Grade responsiva que distribui os cards de profissionais automaticamente */
+.prof-grid {
+  display: grid;
+  /* Cria colunas com tamanho mínimo de 280px e máximo de 1fr ocupando o espaço que houver */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ── Card profissional ── */
+/* Bloco do card individual do profissional */
+.prof-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden; cursor: pointer;
+  transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+  text-decoration: none; color: inherit; display: block;
+  box-shadow: var(--shadow-sm);
+}
+/* Efeito de levitação e sombreamento ao passar o mouse no card */
+.prof-card:hover {
+  transform: translateY(-6px); /* Eleva o card levemente */
+  border-color: rgba(214,72,36,.25);
+  box-shadow: 0 16px 40px rgba(9,30,62,.1); /* Sombra suave expandida */
+}
+
+/* Topo do card (faixa azul escura decorativa atrás do avatar) */
+.card-top {
+  height: 76px;
+  background: #091E3E;
+  position: relative; 
+}
+
+/* Invólucro que posiciona o avatar flutuando entre o topo azul e o corpo branco */
+.card-avatar-wrap {
+  position: absolute; bottom: -22px; left: 1.25rem; z-index: 1;
+}
+/* Imagem circular do profissional */
+.card-avatar {
+  width: 60px; height: 60px; border-radius: 50%;
+  border: 3px solid #fff; object-fit: cover; display: block;
+}
+/* Ponto indicador de status (Online/Disponível por padrão verde) */
+.card-status-dot {
+  position: absolute; bottom: 2px; right: 2px;
+  width: 12px; height: 12px; border-radius: 50%;
+  border: 2px solid #fff; background: #10b981;
+}
+/* Modificador para alterar a cor do ponto caso o profissional esteja ocupado */
+.card-status-dot.ocupado { background: var(--accent); }
+
+/* Bloco de conteúdo/informações internas do card */
+.card-body { padding: 2.25rem 1.25rem 1.25rem; }
+
+/* Nome do profissional */
+.card-name {
+  font-family: var(--font-body);
+  font-size: 1.25rem; font-weight: 600;
+  letter-spacing: -.01em; color: var(--text-1); margin-bottom: .1rem;
+}
+/* Profissão/Cargo do profissional */
+.card-title {
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--accent); margin-bottom: .5rem;
+}
+/* Cidade/Localização */
+.card-location { font-size: .78rem; color: var(--navy); margin-bottom: .75rem; }
+/* Seção das estrelas de avaliação dentro do card */
+.card-rating { display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem; }
+
+/* Container para as tags de especialidades do profissional */
+.card-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .75rem; }
+/* Estilo das pílulas de tags individuais */
+.card-tag {
+  padding: 3px 9px;
+  background: var(--off-white); border: 1px solid var(--border);
+  border-radius: 99px; font-size: .68rem; color: var(--text-2); white-space: nowrap;
+}
+
+/* Rodapé do card contendo preço e botões de ação */
+.card-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: .75rem; border-top: 1px solid var(--border); /* Linha sutil separando o rodapé */
+}
+/* Exibição do valor/preço do serviço */
+.card-price {
+  font-family: var(--font-display); 
+  font-size: 1.15rem; font-weight: 700; color: var(--navy);
+}
+
+/* Botão em estilo fantasma (apenas texto) dentro do card */
+.prof-card .btn-ghost{
+  color: var(--sand);
+}
+/* Efeito de preenchimento ao passar o mouse no botão fantasma */
+.prof-card .btn-ghost:hover{
+  color: white;
+  background: var(--sand-light);
+}
+/* Estado exibido quando nenhum profissional é encontrado na pesquisa */
+.empty-state {
+  grid-column: 1 / -1; text-align: center; /* Ocupa todas as colunas disponíveis do grid */
+  padding: 4rem; color: var(--text-3);
+}
+/* Texto principal da mensagem de estado vazio */
+.empty-state p { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: .5rem; font-weight: 300; }
+
+/* ── Responsivo (Telas Médias/Tablets de até 900px) ── */
+@media (max-width: 900px) {
+  /* Desfaz o grid de duas colunas, colocando a barra lateral acima do conteúdo */
+  .home-layout { grid-template-columns: 1fr; }
+  /* Transforma a sidebar em uma seção horizontal comum no topo da página */
+  .sidebar { position: static; height: auto; padding: 1.25rem; border-right: none; border-bottom: 1px solid var(--border); }
+  .main-content { padding: 1.5rem; }
+}
+/* ── Responsivo (Telas Pequenas/Celulares de até 600px) ── */
+@media (max-width: 600px) {
+  /* Força a grade de profissionais a exibir apenas um card por linha */
+  .prof-grid { grid-template-columns: 1fr; }
+  /* Alinha os itens do cabeçalho de resultados de forma vertical */
+  .results-header { flex-direction: column; align-items: flex-start; }
+}
+
+
+/* ══════════════════════════════════════════
+   Menu Hambúrguer Lateral Direito (Layout Ajustável)
+   ══════════════════════════════════════════ */
+
+/* O container principal controla o espaço da sidebar dinamicamente */
+.home-layout {
+  display: grid;
+  grid-template-columns: 1fr 0px; /* Começa com a coluna da sidebar zerada */
+  min-height: calc(100vh - 64px);
+  transition: grid-template-columns 0.3s ease; /* Animação suave de empurrar o site */
+  overflow-x: hidden; /* Evita barras de rolagem horizontais indesejadas */
+}
+
+/* Quando o JS ativar essa classe, a coluna da direita assume 280px e o site se reajusta */
+.home-layout.menu-aberto {
+  grid-template-columns: 1fr 280px;
+}
+
+/* Conteúdo principal se adapta automaticamente graças ao Grid */
+.main-content {
+  width: 100%;
+  padding: 2rem 2.5rem; 
+  background: var(--off-white);
+  box-sizing: border-box;
+}
+
+/* A Sidebar agora fica embaixo da navbar e se comporta como coluna do grid */
+.sidebar {
+  width: 280px;
+  height: calc(100vh - 64px); /* Altura exata descontando a barra azul */
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-left: 1px solid var(--border); /* Borda na esquerda para separar do conteúdo */
+  border-right: none; /* Remove a antiga borda direita */
+  padding: 2rem 1.25rem;
+  overflow-y: auto; /* Caso os filtros fiquem longos, cria rolagem interna */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-sizing: border-box;
+  
+  /* Esconde visualmente o conteúdo enquanto a coluna estiver fechada (0px) */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+/* Exibe os filtros com suavidade assim que o menu abrir */
+.home-layout.menu-aberto .sidebar {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ── Alinhamento do Botão Hambúrguer na Navbar ── */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-right: 15px; /* Afasta os elementos levemente da borda direita da tela */
+}
+
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1010;
+  margin-left: 5px;
+}
+
+.hamburger-menu span {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+.hamburger-menu:hover span{
+  background-color: var(--sand-light);
+}
+
+/* Animação do Hambúrguer virando "X" quando ativo */
+.hamburger-menu.active span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+.hamburger-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-menu.active span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* Container de Ações na base inferior do Card */
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px 16px 16px;
+  background-color: #ffffff;
+  border-radius: 0 0 12px 12px;
+}
+
+/* ==================================================
+   BOTÃO DE FAVORITAR — APENAS O ÍCONE (SEM CAIXA)
+   ================================================== */
+
+.btn-favoritar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;       /* Remove completamente a cor de fundo cinza */
+  border: none;           /* Remove a borda da caixinha */
+  padding: 0;             /* Remove espaçamentos internos */
+  margin: 0;              /* Remove margens padrão */
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+
+/* Efeito sutil ao passar o mouse por cima do coração solto */
+.btn-favoritar:hover {
+  background: none;       /* Garante que não vai aparecer fundo no hover */
+  transform: scale(1.1);  /* Dá um leve zoom no coração ao passar o mouse */
+}
+
+/* Estado inicial do coração (Vazado / Transparente com linha cinza) */
+.btn-favoritar .icon-coracao {
+  color: #98a2b3;         /* Cor da linha do coração (cinza igual ao da sua imagem) */
+  fill: transparent;      /* Interior transparente */
+  transition: fill 0.3s ease, color 0.3s ease;
+}
+
+/* Estado Ativo / Clicado (Preenchido de Vermelho) */
+.btn-favoritar.active .icon-coracao {
+  color: #e11d48;         /* Borda vermelha */
+  fill: #e11d48;          /* Interior preenchido de vermelho */
+}
+
+
+/* Botão Dinâmico Contratar */
+.btn-contratar {
+  flex: 1;
+  height: 40px;
+  background-color: #D64824; /* Tom laranja predominante */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.btn-contratar:hover {
+  background-color: #b53a1b;
+}
+
+/* Visual Elegante para Profissional Ocupado */
+.btn-contratar.desativado {
+  background-color: #f2f4f7;
+  color: #98a2b3;
+  border: 1px solid #eaecf0;
+  cursor: not-allowed;
+}
+
+/* Ajuste fino estrutural do link superior do card */
+.card-link-wrapper {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
